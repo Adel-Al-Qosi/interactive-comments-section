@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Dancing+Script:wght@700&family=DynaPuff:wght@700&family=Kumbh+Sans:wght@400;700&family=Rubik:ital,wght@1,300&display=swap");
+
+/* ------------------- */
+/* Custom properties   */
+/* ------------------- */
+
+:root {
+  /* Colors */
+  /* ------ */
+  /* Primary colors */
+  --clr-moderate-blue: hsl(238, 40%, 52%);
+  --clr-soft-red: hsl(358, 79%, 66%);
+  --clr-light-grayish-blue: hsl(239, 57%, 85%);
+  --clr-pale-red: hsl(357, 100%, 86%);
+
+  /* Neutral colors */
+  --clr-dark-blue: hsl(212, 24%, 26%);
+  --clr-grayish-blue: hsl(211, 10%, 45%);
+  --clr-light-gray: hsl(223, 19%, 93%);
+  --clr-very-light-gray: hsl(228, 33%, 97%);
+  --clr-white: hsl(0, 0%, 100%);
+
+  /* Typography */
+  --fs-p: 1rem;
+
+  --ff-rubik: "Rubik", sans-serif;
+
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-700: 700;
+}
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+/* set up the body */
+body {
+  font-family: var(--ff-sans-normal);
+  font-size: var(--fs-400);
+  color: hsl(var(--clr-white));
+  background-color: hsl(var(--clr-dark));
+  line-height: 1.5;
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
+
+  overflow-x: hidden;
+}
+
+/* make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+.sr-only {
+  position: absolute; 
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px; 
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+

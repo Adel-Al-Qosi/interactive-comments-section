@@ -102,11 +102,11 @@ select {
 /* ------------------- */
 
 .sr-only {
-  position: absolute; 
+  position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: -1px; 
+  margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap; /* added line */
@@ -117,25 +117,32 @@ select {
 /* components          */
 /* ------------------- */
 
+/* App */
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
 /* user */
 .user {
   background-color: var(--clr-white);
   width: 94%;
-  margin: 0 auto 2rem;
+  margin: 0 auto 3rem;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-template-areas: 
-  'text text text text text'
-  'text text text text text'
-  'img space space btn btn';
+  grid-template-areas:
+    "text text text text text"
+    "text text text text text"
+    "img space space btn btn";
   padding: 1rem;
 }
 
 .user--textarea {
   grid-area: text;
   resize: none;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--clr-light-gray);
   padding: 1rem;
 }
@@ -148,7 +155,7 @@ select {
 .user--img {
   grid-area: img;
   width: 2rem;
-  margin: 1rem 0 0 0;
+  margin-top: 1rem;
 }
 
 .user--btn {
@@ -156,7 +163,7 @@ select {
   width: 6rem;
   height: 3rem;
   border: 0;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   place-self: center end;
   margin-top: 1rem;
   background-color: var(--clr-moderate-blue);
@@ -170,42 +177,102 @@ select {
     width: 94%;
     margin: 0 auto 2rem;
     display: flex;
-    justify-content: space-between;
+    gap: 1rem;
+    justify-content: center;
     align-items: flex-start;
+    max-width: 90rem;
   }
-  
+
   .user--textarea {
     grid-area: text;
     resize: none;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     border: 1px solid var(--clr-light-gray);
     padding: 1rem;
     width: 80%;
     height: 6rem;
   }
-  
+
   .user--textarea::placeholder {
     color: var(--clr-light-grayish-blue);
     font-weight: var(--fw-700);
   }
-  
+
   .user--img {
     grid-area: img;
     width: 2rem;
     margin: 0;
+    
   }
-  
+
   .user--btn {
     grid-area: btn;
     width: 6rem;
     height: 3rem;
     border: 0;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     place-self: start end;
     margin-top: 0rem;
     background-color: var(--clr-moderate-blue);
     color: var(--clr-white);
     font-weight: var(--fw-700);
   }
-  
+}
+
+/* comments */
+
+.comments {
+  margin-top: 2rem;
+}
+
+.comment {
+  background-color: var(--clr-white);
+  width: 94%;
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1ft);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas: 
+    'header header header header header'
+    'body body body body body'
+    'body body body body body'
+    'body body body body body'
+    'score score space space reply'
+    ;
+}
+
+.comment-score {
+  grid-area: score;
+}
+
+.comment-score--minus {
+
+}
+
+.comment-score--score {
+
+}
+
+.comment-score--plus {
+
+}
+
+.comment-header {
+  grid-area: header;
+}
+
+.comment-header img {
+  width: 2rem;
+}
+
+.comment-header--user {
+
+}
+
+.comment-header--reply {
+  grid-area: reply;
+}
+
+.comment-body {
+
 }

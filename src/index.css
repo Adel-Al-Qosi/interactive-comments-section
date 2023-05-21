@@ -64,22 +64,15 @@ p {
 
 /* set up the body */
 body {
-  font-family: var(--ff-sans-normal);
+  font-family: var(--ff-rubik);
   font-size: var(--fs-400);
-  color: hsl(var(--clr-white));
-  background-color: hsl(var(--clr-dark));
-  line-height: 1.5;
-  min-height: 100vh;
-
-  display: grid;
-  grid-template-rows: min-content 1fr;
-
-  overflow-x: hidden;
+  line-height: 1;
+  background-color: var(--clr-light-gray);
+  font-style: unset;
 }
 
 /* make images easier to work with */
-img,
-picture {
+img {
   max-width: 100%;
   display: block;
 }
@@ -120,3 +113,99 @@ select {
   border: 0;
 }
 
+/* ------------------- */
+/* components          */
+/* ------------------- */
+
+/* user */
+.user {
+  background-color: var(--clr-white);
+  width: 94%;
+  margin: 0 auto 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: 
+  'text text text text text'
+  'text text text text text'
+  'img space space btn btn';
+  padding: 1rem;
+}
+
+.user--textarea {
+  grid-area: text;
+  resize: none;
+  border-radius: .5rem;
+  border: 1px solid var(--clr-light-gray);
+  padding: 1rem;
+}
+
+.user--textarea::placeholder {
+  color: var(--clr-light-grayish-blue);
+  font-weight: var(--fw-700);
+}
+
+.user--img {
+  grid-area: img;
+  width: 2rem;
+  margin: 1rem 0 0 0;
+}
+
+.user--btn {
+  grid-area: btn;
+  width: 6rem;
+  height: 3rem;
+  border: 0;
+  border-radius: .5rem;
+  place-self: center end;
+  margin-top: 1rem;
+  background-color: var(--clr-moderate-blue);
+  color: var(--clr-white);
+  font-weight: var(--fw-700);
+}
+
+@media (min-width: 45em) {
+  .user {
+    background-color: var(--clr-white);
+    width: 94%;
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .user--textarea {
+    grid-area: text;
+    resize: none;
+    border-radius: .5rem;
+    border: 1px solid var(--clr-light-gray);
+    padding: 1rem;
+    width: 80%;
+    height: 6rem;
+  }
+  
+  .user--textarea::placeholder {
+    color: var(--clr-light-grayish-blue);
+    font-weight: var(--fw-700);
+  }
+  
+  .user--img {
+    grid-area: img;
+    width: 2rem;
+    margin: 0;
+  }
+  
+  .user--btn {
+    grid-area: btn;
+    width: 6rem;
+    height: 3rem;
+    border: 0;
+    border-radius: .5rem;
+    place-self: start end;
+    margin-top: 0rem;
+    background-color: var(--clr-moderate-blue);
+    color: var(--clr-white);
+    font-weight: var(--fw-700);
+  }
+  
+}

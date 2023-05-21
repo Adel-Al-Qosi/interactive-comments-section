@@ -85,6 +85,10 @@ select {
   font: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -117,13 +121,6 @@ select {
 /* components          */
 /* ------------------- */
 
-/* App */
-
-.App {
-  display: flex;
-  flex-direction: column;
-}
-
 /* user */
 .user {
   background-color: var(--clr-white);
@@ -137,6 +134,7 @@ select {
     "text text text text text"
     "img space space btn btn";
   padding: 1rem;
+  border-radius: .5rem;
 }
 
 .user--textarea {
@@ -181,6 +179,7 @@ select {
     justify-content: center;
     align-items: flex-start;
     max-width: 90rem;
+    
   }
 
   .user--textarea {
@@ -202,7 +201,6 @@ select {
     grid-area: img;
     width: 2rem;
     margin: 0;
-    
   }
 
   .user--btn {
@@ -230,31 +228,52 @@ select {
   width: 94%;
   margin: 1rem auto;
   display: grid;
-  grid-template-columns: repeat(4, 1ft);
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-areas: 
-    'header header header header header'
-    'body body body body body'
-    'body body body body body'
-    'body body body body body'
-    'score score space space reply'
-    ;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    "header header header header header"
+    "body body body body body"
+    "body body body body body"
+    "score space space space reply";
+  font-size: var(--fs-p);
+  line-height: 1.5;
+  padding: 1rem;
+  border-radius: .5rem;
+  max-width: 90rem;
 }
 
 .comment-score {
   grid-area: score;
+  height: 2.3rem;
+  width: 5.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+  background-color: var(--clr-light-gray);
+  opacity: .8;
+  border-radius: .5rem;
 }
 
 .comment-score--minus {
-
+  background-image: url(./images/icon-minus.svg);
+  aspect-ratio: 1;
+  border: 0;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .comment-score--score {
-
+  color: var(--clr-moderate-blue);
+  font-weight: var(--fw-700);
 }
 
 .comment-score--plus {
-
+  background-image: url(./images/icon-plus.svg);
+  aspect-ratio: 1;
+  border: 0;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .comment-header {
@@ -266,13 +285,40 @@ select {
 }
 
 .comment-header--user {
-
 }
 
 .comment-header--reply {
   grid-area: reply;
+  height: 2rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  color: var(--clr-moderate-blue);
+  font-weight: var(--fw-700);
+  border: 0;
+  background-color: var(--clr-white);
 }
 
 .comment-body {
+  grid-area: body;
+  color: var(--clr-grayish-blue);
+  font-weight: var(--fw-700);
+}
 
+@media (min-width: 45em) {
+  .comment {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 
+    'score header header heade space space reply'
+    'score body body body body body body'
+    'space body body body body body body';
+  }
+
+  .comment-body {
+    grid-area: body;
+  }
 }

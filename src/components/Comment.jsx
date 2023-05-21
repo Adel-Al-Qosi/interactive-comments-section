@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import replyImage from '../images/icon-reply.svg'
 
 function Comment({ comment }) {
   const [userImage, setUserImage] = useState(null);
@@ -12,9 +13,9 @@ function Comment({ comment }) {
   return (
     <div className="comment">
       <div className="comment-score">
-        <button className="comment-score--plus">+</button>
+        <button className="comment-score--plus"><span className="sr-only">score plus</span></button>
         <p className="comment-score--score">{comment.score}</p>
-        <button className="comment-score--minus">-</button>
+        <button className="comment-score--minus"><span className="sr-only">score minus</span></button>
       </div>
 
       <div className="comment-header">
@@ -22,7 +23,7 @@ function Comment({ comment }) {
           <img src={userImage} alt="user" />
         </div>
       </div>
-        <button className="comment-header--reply">Reply</button>
+        <button className="comment-header--reply"><img src={replyImage} alt='reply' />Reply</button>
       <div className="comment-body">{comment.content}</div>
     </div>
   );

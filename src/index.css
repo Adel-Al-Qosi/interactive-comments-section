@@ -134,7 +134,7 @@ button {
     "text text text text text"
     "img space space btn btn";
   padding: 1rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .user--textarea {
@@ -179,7 +179,6 @@ button {
     justify-content: center;
     align-items: flex-start;
     max-width: 90rem;
-    
   }
 
   .user--textarea {
@@ -234,11 +233,11 @@ button {
     "header header header header header"
     "body body body body body"
     "body body body body body"
-    "score space space space reply";
+    "score . . .  reply";
   font-size: var(--fs-p);
   line-height: 1.5;
   padding: 1rem;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   max-width: 90rem;
 }
 
@@ -251,8 +250,8 @@ button {
   align-items: center;
   margin-top: 1rem;
   background-color: var(--clr-light-gray);
-  opacity: .8;
-  border-radius: .5rem;
+  opacity: 0.8;
+  border-radius: 0.5rem;
 }
 
 .comment-score--minus {
@@ -294,7 +293,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
   color: var(--clr-moderate-blue);
   font-weight: var(--fw-700);
   border: 0;
@@ -310,15 +309,36 @@ button {
 @media (min-width: 45em) {
   .comment {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-template-areas: 
-    'score header header heade space space reply'
-    'score body body body body body body'
-    'space body body body body body body';
+    grid-template-areas:
+      "score header header header . . . . reply reply"
+      "score body body body body body body body body ."
+      ". body body body body body body body body .";
+
+      padding-left: 0;
   }
 
   .comment-body {
     grid-area: body;
+  }
+
+  .comment-header {
+    grid-area: header;
+  }
+
+  .comment-score {
+    grid-area: score;
+    display: flex;
+    flex-direction: column;
+    width: 2.3rem;
+    height: 5.5rem;
+    place-self:  center;
+    margin-top: 0;
+  }
+
+  .comment-header--reply {
+    grid-area: reply;
+    margin-top: 0;
   }
 }

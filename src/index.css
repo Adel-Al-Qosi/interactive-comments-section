@@ -135,6 +135,7 @@ button {
     "img space space btn btn";
   padding: 1rem;
   border-radius: 0.5rem;
+  max-width: 70rem;
 }
 
 .user--textarea {
@@ -176,9 +177,7 @@ button {
     margin: 0 auto 2rem;
     display: flex;
     gap: 1rem;
-    justify-content: center;
     align-items: flex-start;
-    max-width: 90rem;
   }
 
   .user--textarea {
@@ -187,7 +186,7 @@ button {
     border-radius: 0.5rem;
     border: 1px solid var(--clr-light-gray);
     padding: 1rem;
-    width: 80%;
+    width: 88%;
     height: 6rem;
   }
 
@@ -199,7 +198,7 @@ button {
   .user--img {
     grid-area: img;
     width: 2rem;
-    margin: 0;
+    margin: 0 0 0 .5rem;
   }
 
   .user--btn {
@@ -238,7 +237,7 @@ button {
   line-height: 1.5;
   padding: 1rem;
   border-radius: 0.5rem;
-  max-width: 90rem;
+  max-width: 70rem;
 }
 
 .comment-score {
@@ -309,7 +308,7 @@ button {
 @media (min-width: 45em) {
   .comment {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: 5rem repeat(9, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas:
       "score header header header . . . . reply reply"

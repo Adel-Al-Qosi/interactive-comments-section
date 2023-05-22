@@ -276,16 +276,27 @@ button {
 
 .comment-header {
   grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 15rem;
 }
 
 .comment-header img {
   width: 2rem;
 }
 
-.comment-header--user {
+.comment-header h2 {
+  font-weight: var(--fw-700);
+  font-size: var(--fs-p);
 }
 
-.comment-header--reply {
+.comment-header p {
+  color: var(--clr-grayish-blue);
+  
+}
+
+.comment-header--reply-btn {
   grid-area: reply;
   height: 2rem;
   margin-top: 1rem;
@@ -336,8 +347,164 @@ button {
     margin-top: 0;
   }
 
-  .comment-header--reply {
+  .comment-header--reply-btn {
     grid-area: reply;
+    margin: 0 1rem 0 0;
+    place-self: start end;
+  }
+}
+
+/* reply */
+.replies {
+  position: relative;
+}
+
+.replies::after {
+  content: '';
+  border-left: 1px solid var(--clr-light-grayish-blue);
+  position: absolute;
+  left: 3%;
+  top: 0;
+  height: 100%;
+  width: 1px;
+}
+
+.reply {
+  background-color: var(--clr-white);
+  width: 90%;
+  margin: 1rem 3% 1rem auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    "header header header header header"
+    "body body body body body"
+    "body body body body body"
+    "score . . .  reply";
+  font-size: var(--fs-p);
+  line-height: 1.5;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-width: 70rem;
+  
+}
+
+.reply-score {
+  grid-area: score;
+  height: 2.3rem;
+  width: 5.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+  background-color: var(--clr-light-gray);
+  opacity: 0.8;
+  border-radius: 0.5rem;
+}
+
+.reply-score--minus {
+  background-image: url(./images/icon-minus.svg);
+  aspect-ratio: 1;
+  border: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.reply-score--score {
+  color: var(--clr-moderate-blue);
+  font-weight: var(--fw-700);
+}
+
+.reply-score--plus {
+  background-image: url(./images/icon-plus.svg);
+  aspect-ratio: 1;
+  border: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.reply-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 15rem;
+}
+
+.reply-header img {
+  width: 2rem;
+}
+
+.reply-header h2 {
+  font-weight: var(--fw-700);
+  font-size: var(--fs-p);
+}
+
+.reply-header p {
+  color: var(--clr-grayish-blue);
+  
+}
+
+.reply-header--reply-btn {
+  grid-area: reply;
+  height: 2rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--clr-moderate-blue);
+  font-weight: var(--fw-700);
+  border: 0;
+  background-color: var(--clr-white);
+}
+
+.reply-body {
+  grid-area: body;
+  color: var(--clr-grayish-blue);
+  font-weight: var(--fw-700);
+}
+
+@media (min-width: 45em) {
+
+  .replies::after {
+    left: 8%;
+  }
+
+  .reply {
+    display: grid;
+    grid-template-columns: 5rem repeat(9, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+      "score header header header . . . . reply reply"
+      "score body body body body body body body body ."
+      ". body body body body body body body body .";
+
+      padding-left: 0;
+      width: 84%;
+  }
+
+  .reply-body {
+    grid-area: body;
+  }
+
+  .reply-header {
+    grid-area: header;
+  }
+
+  .reply-score {
+    grid-area: score;
+    display: flex;
+    flex-direction: column;
+    width: 2.3rem;
+    height: 5.5rem;
+    place-self:  center;
     margin-top: 0;
+  }
+
+  .reply-header--reply-btn {
+    grid-area: reply;
+    margin: 0 1rem 0 0;
+    place-self: start end;
   }
 }

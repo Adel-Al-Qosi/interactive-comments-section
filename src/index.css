@@ -356,14 +356,17 @@ button {
 
 /* reply */
 .replies {
+  width: 94%;
+  margin: 0 auto;
   position: relative;
+  max-width: 70rem;
 }
 
 .replies::after {
   content: '';
   border-left: 1px solid var(--clr-light-grayish-blue);
   position: absolute;
-  left: 3%;
+  left: 0%;
   top: 0;
   height: 100%;
   width: 1px;
@@ -371,8 +374,8 @@ button {
 
 .reply {
   background-color: var(--clr-white);
-  width: 90%;
-  margin: 1rem 3% 1rem auto;
+  width: 94%;
+  margin: 1rem 0 1rem auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -468,7 +471,7 @@ button {
 @media (min-width: 45em) {
 
   .replies::after {
-    left: 8%;
+    left: 3.8%;
   }
 
   .reply {
@@ -481,7 +484,7 @@ button {
       ". body body body body body body body body .";
 
       padding-left: 0;
-      width: 84%;
+      width: 92%;
   }
 
   .reply-body {

@@ -14,7 +14,7 @@ function Comment({ comment }) {
   }, [comment.user.username]);
 
   return (
-    <>
+    <div className="container">
       <div className="comment">
         <div className="comment-score">
           <button className="comment-score--plus">
@@ -44,7 +44,7 @@ function Comment({ comment }) {
           <Reply reply={reply} />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

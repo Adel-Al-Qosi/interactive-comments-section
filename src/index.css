@@ -462,6 +462,8 @@ button {
   font-weight: var(--fw-700);
   border: 0;
   background-color: var(--clr-white);
+  position: absolute;
+  right: 1rem;
 }
 
 .reply-body {

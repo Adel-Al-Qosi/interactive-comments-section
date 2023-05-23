@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import replyImage from "../images/icon-reply.svg";
+import editImage from "../images/icon-edit.svg";
+import deleteImage from "../images/icon-delete.svg";
 
 function UserReply({reply}) {
     const [userImage, setUserImage] = useState(null);
@@ -28,12 +29,13 @@ function UserReply({reply}) {
             <img src={userImage} alt="user" />
           </div>
           <h2>{reply.user.username}</h2>
+          <p id="reply-header--you">you</p>
           <p>{reply.createdAt}</p>
         </div>
-        <button className="reply-header--reply-btn">
-          <img src={replyImage} alt="reply" />
-          Reply
-        </button>
+        <div className="comment-header--reply-btn">
+          <button className="delete btn"> <img src={deleteImage} alt="delete" /> delete</button>
+          <button className="edit btn"> <img src={editImage} alt="edit" />  edit</button>
+        </div>
         <div className="reply-body">{reply.content}</div>
         </div>
     )

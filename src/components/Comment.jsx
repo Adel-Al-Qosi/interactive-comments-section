@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import replyImage from "../images/icon-reply.svg";
 import Reply from "./Reply";
+import UserReply from "./UserReply";
+import jsonData from '../data.json'
+
 
 function Comment({ comment }) {
   const [userImage, setUserImage] = useState(null);
@@ -40,9 +43,12 @@ function Comment({ comment }) {
         <div className="comment-body">{comment.content}</div>
       </div>
       <div className="replies">
-        {comment.replies.map((reply) => (
-          <Reply reply={reply} />
-        ))}
+        {comment.replies.map((reply) => {
+          return (
+          reply.user.username === jsonData.currentUser.username ?
+          <UserReply reply={reply} />:
+           <Reply reply={reply} /> 
+        )})}
       </div>
     </div>
   );

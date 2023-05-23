@@ -30,10 +30,13 @@ function Reply({reply}) {
           <h2>{reply.user.username}</h2>
           <p>{reply.createdAt}</p>
         </div>
-        <button className="reply-header--reply-btn">
+        <div className="reply-header--reply-btn">
+
+        <button className="btn edit">
           <img src={replyImage} alt="reply" />
           Reply
         </button>
+        </div>
         <div className="reply-body">{reply.content}</div>
         </div>
     )

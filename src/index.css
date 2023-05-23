@@ -238,6 +238,7 @@ button {
   padding: 1rem;
   border-radius: 0.5rem;
   max-width: 70rem;
+  position: relative;
 }
 
 .comment-score {
@@ -279,7 +280,8 @@ button {
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: 15rem;
+  width: 18rem;
+  position: relative;
 }
 
 .comment-header img {
@@ -335,7 +337,6 @@ button {
 
   .comment-header {
     grid-area: header;
-    width: 130%;
   }
 
   .comment-score {
@@ -523,11 +524,15 @@ button {
 
 .delete {
   color: var(--clr-soft-red);
+  position: absolute;
+  right: 6rem;
 }
 
 .edit {
   color: var(--clr-moderate-blue);
   margin: 0 1rem;
+  position: absolute;
+  right: 0rem;
 }
 
 .comment-header--you {

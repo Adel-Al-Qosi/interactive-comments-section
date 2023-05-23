@@ -22,7 +22,7 @@ function User({ comments, setComments }) {
         setNewComment(null)
     }
     setNewId(newId + 1);
-  }, [text]);
+  }, [text, newId]);
 
   return (
     <div className='user'>

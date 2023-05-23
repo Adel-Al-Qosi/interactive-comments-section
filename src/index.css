@@ -291,7 +291,7 @@ button {
   font-size: var(--fs-p);
 }
 
-.comment-header p {
+.comment-header p:not(.comment-header--you) {
   color: var(--clr-grayish-blue);
   
 }
@@ -335,6 +335,7 @@ button {
 
   .comment-header {
     grid-area: header;
+    width: 130%;
   }
 
   .comment-score {
@@ -510,4 +511,32 @@ button {
     margin: 0 1rem 0 0;
     place-self: start end;
   }
+}
+
+.btn {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  background-color: var(--clr-white);
+  border: 0;
+}
+
+.delete {
+  color: var(--clr-soft-red);
+}
+
+.edit {
+  color: var(--clr-moderate-blue);
+  margin: 0 1rem;
+}
+
+.comment-header--you {
+  color: var(--clr-white);
+  background-color: var(--clr-moderate-blue);
+  width: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: var(--fw-700);
+  border-radius: .2rem;
 }

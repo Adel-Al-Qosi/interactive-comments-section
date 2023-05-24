@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import replyImage from "../images/icon-reply.svg";
+import ReplyOnReplies from "./replayOnReplies";
 
-function Reply({reply}) {
-    const [userImage, setUserImage] = useState(null);
+function Reply({ reply }) {
+  const [userImage, setUserImage] = useState(null);
+  const [replyOn, setReplyOn] = useState(false);
 
-    useEffect(() => {
-      import(`../images/avatars/image-${reply.user.username}.png`)
-        .then((image) => setUserImage(image.default))
-        .catch((error) =>
-          console.error("Error during dynamic image import:", error)
-        );
-    }, [reply.user.username]);
-    return (
-        <div className="reply">
-            <div className="reply-score">
+  useEffect(() => {
+    import(`../images/avatars/image-${reply.user.username}.png`)
+      .then((image) => setUserImage(image.default))
+      .catch((error) =>
+        console.error("Error during dynamic image import:", error)
+      );
+  }, [reply.user.username]);
+
+  const handleReplyClick = () => {
+    setReplyOn(!replyOn);
+  };
+
+  return (
+    <>
+      <div className="reply">
+        <div className="reply-score">
           <button className="reply-score--plus">
             <span className="sr-only">score plus</span>
           </button>
@@ -31,15 +39,18 @@ function Reply({reply}) {
           <p>{reply.createdAt}</p>
         </div>
         <div className="reply-header--reply-btn">
-
-        <button className="btn edit">
-          <img src={replyImage} alt="reply" />
-          Reply
-        </button>
+          <button className="btn edit" onClick={handleReplyClick}>
+            <img src={replyImage} alt="reply" />
+            Reply
+          </button>
         </div>
-        <div className="reply-body"><span className="reply-to">@{reply.replyingTo}</span> {reply.content}</div>
+        <div className="reply-body">
+          <span className="reply-to">@{reply.replyingTo}</span> {reply.content}
         </div>
-    )
+      </div>
+      {replyOn && <ReplyOnReplies />}
+    </>
+  );
 }
 
-export default Reply
+export default Reply;

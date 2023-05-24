@@ -36,7 +36,7 @@ function UserReply({reply}) {
           <button className="delete btn"> <img src={deleteImage} alt="delete" /> delete</button>
           <button className="edit btn"> <img src={editImage} alt="edit" />  edit</button>
         </div>
-        <div className="reply-body">{reply.content}</div>
+        <div className="reply-body"><span className="reply-to">@{reply.replyingTo}</span> {reply.content}</div>
         </div>
     )
 }

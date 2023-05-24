@@ -558,3 +558,8 @@ button {
   font-weight: var(--fw-700);
   border-radius: 0.2rem;
 }
+
+.reply-to {
+  font-weight: var(--fw-700);
+  color: var(--clr-moderate-blue);
+}

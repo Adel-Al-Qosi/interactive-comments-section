@@ -37,7 +37,7 @@ function Reply({reply}) {
           Reply
         </button>
         </div>
-        <div className="reply-body">{reply.content}</div>
+        <div className="reply-body"><span className="reply-to">@{reply.replyingTo}</span> {reply.content}</div>
         </div>
     )
 }

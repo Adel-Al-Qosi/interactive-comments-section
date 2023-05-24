@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import userImage from '../images/avatars/image-juliusomo.png';
+import { IdContext } from './IdProvider';
 
 function User({ comments, setComments }) {
   const [text, setText] = useState('');
-  const [newId, setNewId] = useState(5);
+  const {newId, setNewId} = useContext(IdContext)
   const [newComment, setNewComment] = useState(null);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ function User({ comments, setComments }) {
         setNewComment(null)
     }
     setNewId(newId + 1);
-  }, [text, newId]);
+  }, [text, newId, setNewId]);
 
   return (
     <div className='user'>

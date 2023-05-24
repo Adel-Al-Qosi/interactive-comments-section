@@ -69,6 +69,7 @@ body {
   line-height: 1;
   background-color: var(--clr-light-gray);
   font-style: unset;
+  margin: 3rem 0;
 }
 
 /* make images easier to work with */
@@ -125,7 +126,7 @@ button {
 .user {
   background-color: var(--clr-white);
   width: 94%;
-  margin: 0 auto 3rem;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -171,10 +172,14 @@ button {
 }
 
 @media (min-width: 45em) {
+  body {
+    margin: 1rem 0;
+  }
+
   .user {
     background-color: var(--clr-white);
     width: 94%;
-    margin: 0 auto 2rem;
+    margin: 0 auto;
     display: flex;
     gap: 1rem;
     align-items: flex-start;

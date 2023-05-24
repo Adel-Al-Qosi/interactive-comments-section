@@ -3,6 +3,7 @@ import Comment from "./components/Comment";
 import User from "./components/User";
 import jsonData from "./data.json";
 import UserComment from "./components/UserComment";
+import { IdProvider } from "./components/IdProvider";
 
 function App() {
   const [comments, setComments] = useState(jsonData.comments);
@@ -23,7 +24,11 @@ function App() {
 }
 
 const Root = () => {
-  return <App />
+  return (
+    <IdProvider>
+      <App />
+    </IdProvider>
+  )
 }
 
 export default Root;

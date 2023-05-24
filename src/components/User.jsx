@@ -4,26 +4,36 @@ import { IdContext } from './IdProvider';
 
 function User({ comments, setComments }) {
   const [text, setText] = useState('');
-  const {newId, setNewId} = useContext(IdContext)
+  const { newId, setNewId } = useContext(IdContext);
   const [newComment, setNewComment] = useState(null);
 
   useEffect(() => {
+    let comment = null;
+
     if (text.length > 0) {
-        setNewComment({
-            id: newId,
-            content: text,
-            createdAt: 'Just now',
-            score: 0,
-            user: {
-              username: 'juliusomo',
-            },
-            replies: [],
-          });
-    } else {
-        setNewComment(null)
+      comment = {
+        id: newId,
+        content: text,
+        createdAt: 'Just now',
+        score: 0,
+        user: {
+          username: 'juliusomo',
+        },
+        replies: [],
+      };
     }
-    setNewId(newId + 1);
-  }, [text, newId, setNewId, newComment]);
+
+    setNewComment(comment);
+  }, [text, newId]);
+
+  const handleSend = () => {
+    if (newComment) {
+      setComments([...comments, newComment]);
+      setNewId(newId + 1);
+    }
+    setText('');
+
+  };
 
   return (
     <div className='user'>
@@ -34,13 +44,7 @@ function User({ comments, setComments }) {
         className='user--textarea'
         placeholder='Add a comment...'
       />
-      <button
-        onClick={() => {
-            if (newComment) setComments([...comments, newComment])
-            setText('')
-        }}
-        className='user--btn'
-      >
+      <button onClick={handleSend} className='user--btn'>
         SEND
       </button>
     </div>

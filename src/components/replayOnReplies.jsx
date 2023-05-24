@@ -22,7 +22,7 @@ function ReplyOnReplies({ setOpenReply, name, replies, setReplies }) {
     } else {
       setNewReply(null);
     }
-    setNewId(newId + 1);
+    
   }, [text, newId, setNewId, name, setNewReply]);
 
   return (
@@ -36,6 +36,7 @@ function ReplyOnReplies({ setOpenReply, name, replies, setReplies }) {
       />
       <button
         onClick={() => {
+          setNewId(newId + 1);
           setOpenReply(false)
           if (newReply) setReplies([...replies, newReply]);
           setText('');

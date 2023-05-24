@@ -563,3 +563,30 @@ button {
   font-weight: var(--fw-700);
   color: var(--clr-moderate-blue);
 }
+
+/* reply user component */
+.user-on-reply {
+  background-color: var(--clr-white);
+  width: 94%;
+  margin: 0 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "text text text text text"
+    "text text text text text"
+    "img space space btn btn";
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-width: 70rem;
+}
+
+@media (min-width: 45em) {
+  .user-on-reply {
+    background-color: var(--clr-white);
+    width: 92%;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}

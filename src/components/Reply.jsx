@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import replyImage from "../images/icon-reply.svg";
 import ReplyOnReplies from "./replayOnReplies";
 
-function Reply({ reply }) {
+function Reply({ reply, replies, setReplies }) {
   const [userImage, setUserImage] = useState(null);
   const [replyOn, setReplyOn] = useState(false);
 
@@ -48,7 +48,7 @@ function Reply({ reply }) {
           <span className="reply-to">@{reply.replyingTo}</span> {reply.content}
         </div>
       </div>
-      {replyOn && <ReplyOnReplies />}
+      {replyOn && <ReplyOnReplies name={reply.user.username} replies={replies} setReplies={setReplies} setReplyOn={setReplyOn} />}
     </>
   );
 }

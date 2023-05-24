@@ -58,9 +58,9 @@ function Comment({ comment }) {
       <div className="replies">
         {replies.map((reply) => {
           return reply.user.username === jsonData.currentUser.username ? (
-            <UserReply reply={reply} />
+            <UserReply key={reply.id + 'h82jf'} reply={reply} />
           ) : (
-            <Reply reply={reply} />
+            <Reply replies={replies} setReplies={setReplies} key={reply.id + 'h82jf'} reply={reply} />
           );
         })}
       </div>

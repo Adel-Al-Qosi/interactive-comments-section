@@ -27,12 +27,11 @@ function User({ comments, setComments }) {
   }, [text, newId]);
 
   const handleSend = () => {
+    setNewId(newId + 1)
     if (newComment) {
       setComments([...comments, newComment]);
-      setNewId(newId + 1);
     }
     setText('');
-
   };
 
   return (

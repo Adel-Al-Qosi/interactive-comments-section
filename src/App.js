@@ -12,11 +12,17 @@ function App() {
     <div className="App">
       <div className="comments">
         {comments.map((comment) => {
-          return (
-          comment.user.username === jsonData.currentUser.username ?
-          <UserComment comment={comment} key={comment.id} /> :
-          <Comment comment={comment} key={comment.id} />
-        )})}
+          return comment.user.username === jsonData.currentUser.username ? (
+            <UserComment
+              comment={comment}
+              key={comment.id}
+              comments={comments}
+              setComments={setComments}
+            />
+          ) : (
+            <Comment comment={comment} key={comment.id} />
+          );
+        })}
       </div>
       <User comments={comments} setComments={setComments} />
     </div>
@@ -28,7 +34,7 @@ const Root = () => {
     <IdProvider>
       <App />
     </IdProvider>
-  )
-}
+  );
+};
 
 export default Root;

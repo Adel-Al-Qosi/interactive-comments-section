@@ -12,6 +12,7 @@ function UserReply({reply}) {
           console.error("Error during dynamic image import:", error)
         );
     }, [reply.user.username]);
+    
     return (
         <div className="reply">
             <div className="reply-score">

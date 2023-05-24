@@ -48,7 +48,14 @@ function Reply({ reply, replies, setReplies }) {
           <span className="reply-to">@{reply.replyingTo}</span> {reply.content}
         </div>
       </div>
-      {replyOn && <ReplyOnReplies name={reply.user.username} replies={replies} setReplies={setReplies} setReplyOn={setReplyOn} />}
+      {replyOn && (
+        <ReplyOnReplies
+          name={reply.user.username}
+          replies={replies}
+          setReplies={setReplies}
+          setReplyOn={setReplyOn}
+        />
+      )}
     </>
   );
 }

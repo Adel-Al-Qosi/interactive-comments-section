@@ -475,7 +475,7 @@ button {
 
 @media (min-width: 45em) {
   .replies::after {
-    left: 3.8%;
+    left: 3.7%;
   }
 
   .reply {

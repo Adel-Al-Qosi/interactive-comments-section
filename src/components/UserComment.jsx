@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import editImage from "../images/icon-edit.svg";
 import deleteImage from "../images/icon-delete.svg";
 import Reply from "./Reply";
 import fallbackImage from "../images/avatars/image-juliusomo.png";
-function UserComment({ comment }) {
+import User from "./User";
+
+function UserComment({ comment, comments, setComments }) {
   const [userImage, setUserImage] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedComment, setEditedComment] = useState(comment.content);
 
   useEffect(() => {
     const loadImage = async () => {
@@ -20,8 +24,36 @@ function UserComment({ comment }) {
     loadImage();
   }, [comment.user.username]);
 
-  return (
-    <div className="container">
+  const handleEdit = (e) => {
+    e.preventDefault();
+    setIsEditing(!isEditing);
+  };
+
+  const handleUpdateComment = () => {
+
+    const commentIndex = comments.findIndex((c) => c.id === comment.id);
+
+    const updatedComments = [
+      ...comments.slice(0, commentIndex),
+      { ...comment, content: editedComment },
+      ...comments.slice(commentIndex + 1),
+    ];
+
+    setComments(updatedComments);
+
+    setIsEditing(false);
+  };
+
+  return  isEditing ? (
+      <>
+        <User
+          value={editedComment}
+          onChange={(e) => setEditedComment(e.target.value)}
+          handleUpdateComment={handleUpdateComment}
+        />
+      </>
+    ) : (
+      <div className="container">
       <div className="comment">
         <div className="comment-score">
           <button className="comment-score--plus">
@@ -45,11 +77,11 @@ function UserComment({ comment }) {
           <button className="delete btn">
             <img src={deleteImage} alt="delete" /> delete
           </button>
-          <button className="edit btn">
+          <button onClick={handleEdit} className="edit btn">
             <img src={editImage} alt="edit" /> edit
           </button>
         </div>
-        <div className="comment-body">{comment.content}</div>
+        
       </div>
       <div className="replies">
         {comment.replies.map((reply) => (
@@ -57,7 +89,10 @@ function UserComment({ comment }) {
         ))}
       </div>
     </div>
-  );
+    )
+
+    
+  ;
 }
 
 export default UserComment;

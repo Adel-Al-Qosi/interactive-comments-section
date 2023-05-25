@@ -7,6 +7,11 @@ import { IdProvider } from "./components/IdProvider";
 
 function App() {
   const [comments, setComments] = useState(jsonData.comments);
+  
+  const handleDeleteComment = (commentId) => {
+    const updatedComments = comments.filter((comment) => comment.id !== commentId);
+    setComments(updatedComments);
+  };
 
   return (
     <div className="App">
@@ -18,6 +23,7 @@ function App() {
               key={comment.id}
               comments={comments}
               setComments={setComments}
+              onDelete={handleDeleteComment}
             />
           ) : (
             <Comment comment={comment} key={comment.id} />

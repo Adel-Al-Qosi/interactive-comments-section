@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import editImage from "../images/icon-edit.svg";
 import deleteImage from "../images/icon-delete.svg";
-import Reply from "./Reply";
+import UserReply from "./UserReply";
 import fallbackImage from "../images/avatars/image-juliusomo.png";
-import User from "./User";
 
-function UserComment({ comment, comments, setComments }) {
+function UserComment({ comment, comments, setComments, onDelete }) {
   const [userImage, setUserImage] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedComment, setEditedComment] = useState(comment.content);
+  const [editing, setEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState(comment.content);
 
   useEffect(() => {
     const loadImage = async () => {
       try {
-        const image = await import(`../images/avatars/image-${comment.user.username}.png`);
+        const image = await import(
+          `../images/avatars/image-${comment.user.username}.png`
+        );
         setUserImage(image.default);
       } catch (error) {
         console.error("Error during dynamic image import:", error);
@@ -24,36 +25,51 @@ function UserComment({ comment, comments, setComments }) {
     loadImage();
   }, [comment.user.username]);
 
-  const handleEdit = (e) => {
-    e.preventDefault();
-    setIsEditing(!isEditing);
+  const handleEdit = () => {
+    setEditing(true);
   };
 
-  const handleUpdateComment = () => {
+  const handleSave = () => {
+    if (editedContent !== comment.content) {
+      const updatedComment = { ...comment, content: editedContent };
+      const commentIndex = comments.findIndex((c) => c.id === comment.id);
 
-    const commentIndex = comments.findIndex((c) => c.id === comment.id);
+      const updatedComments = [
+        ...comments.slice(0, commentIndex),
+        updatedComment,
+        ...comments.slice(commentIndex + 1),
+      ];
 
-    const updatedComments = [
-      ...comments.slice(0, commentIndex),
-      { ...comment, content: editedComment },
-      ...comments.slice(commentIndex + 1),
-    ];
+      setComments(updatedComments);
+    }
 
-    setComments(updatedComments);
-
-    setIsEditing(false);
+    setEditing(false);
   };
 
-  return  isEditing ? (
-      <>
-        <User
-          value={editedComment}
-          onChange={(e) => setEditedComment(e.target.value)}
-          handleUpdateComment={handleUpdateComment}
-        />
-      </>
-    ) : (
-      <div className="container">
+  const handleDelete = () => {
+    if (comments && comments.length > 0) {
+      const updatedComments = comments.filter((c) => c.id !== comment.id);
+      setComments(updatedComments);
+    }
+  };
+
+  // const handleDeleteReply = (replyId) => {
+  //   const updatedReplies = comment.replies.filter(
+  //     (reply) => reply.id !== replyId
+  //   );
+  //   const updatedComment = { ...comment, replies: updatedReplies };
+  //   const commentIndex = comments.findIndex((c) => c.id === comment.id);
+  //   const updatedComments = [
+  //     ...comments.slice(0, commentIndex),
+  //     updatedComment,
+  //     ...comments.slice(commentIndex + 1),
+  //   ];
+  //   setComments(updatedComments);
+  // };
+  
+
+  return (
+    <div className="container">
       <div className="comment">
         <div className="comment-score">
           <button className="comment-score--plus">
@@ -70,29 +86,51 @@ function UserComment({ comment, comments, setComments }) {
             <img src={userImage} alt="user" />
           </div>
           <h2>{comment.user.username}</h2>
-          <p className="comment-header--you">you</p>
+          {comment.user.isCurrentUser && (
+            <p className="comment-header--you">you</p>
+          )}
           <p>{comment.createdAt}</p>
         </div>
+
         <div className="comment-header--reply-btn">
-          <button className="delete btn">
+          <button className="delete btn" onClick={handleDelete}>
             <img src={deleteImage} alt="delete" /> delete
           </button>
-          <button onClick={handleEdit} className="edit btn">
-            <img src={editImage} alt="edit" /> edit
-          </button>
+          {editing ? (
+            <button className="edit btn" onClick={handleSave}>
+              Save
+            </button>
+          ) : (
+            <button className="edit btn" onClick={handleEdit}>
+              <img src={editImage} alt="edit" /> edit
+            </button>
+          )}
         </div>
-        
+
+        <div className="comment-body">
+          {editing ? (
+            <textarea
+              className="user--textarea"
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+            />
+          ) : (
+            comment.content
+          )}
+        </div>
       </div>
+
       <div className="replies">
         {comment.replies.map((reply) => (
-          <Reply reply={reply} key={reply.id} />
+          <UserReply
+            reply={reply}
+            key={reply.id}
+            onDelete={onDelete}
+          />
         ))}
       </div>
     </div>
-    )
-
-    
-  ;
+  );
 }
 
 export default UserComment;

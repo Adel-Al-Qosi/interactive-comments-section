@@ -4,7 +4,7 @@ import deleteImage from "../images/icon-delete.svg";
 import UserReply from "./UserReply";
 import fallbackImage from "../images/avatars/image-juliusomo.png";
 
-function UserComment({ comment, comments, setComments, onDelete }) {
+function UserComment({ comment, comments, setComments }) {
   const [userImage, setUserImage] = useState(null);
   const [editing, setEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
@@ -53,19 +53,24 @@ function UserComment({ comment, comments, setComments, onDelete }) {
     }
   };
 
-  // const handleDeleteReply = (replyId) => {
-  //   const updatedReplies = comment.replies.filter(
-  //     (reply) => reply.id !== replyId
-  //   );
-  //   const updatedComment = { ...comment, replies: updatedReplies };
-  //   const commentIndex = comments.findIndex((c) => c.id === comment.id);
-  //   const updatedComments = [
-  //     ...comments.slice(0, commentIndex),
-  //     updatedComment,
-  //     ...comments.slice(commentIndex + 1),
-  //   ];
-  //   setComments(updatedComments);
-  // };
+  const handleDeleteReply = (replyId) => {
+    const updatedReplies = comment.replies.filter((reply) => reply.id !== replyId);
+  
+    const updatedComment = {
+      ...comment,
+      replies: updatedReplies
+    };
+  
+    const commentIndex = comments.findIndex((c) => c.id === comment.id);
+    const updatedComments = [
+      ...comments.slice(0, commentIndex),
+      updatedComment,
+      ...comments.slice(commentIndex + 1),
+    ];
+  
+    setComments(updatedComments);
+  };
+  
   
 
   return (
@@ -125,7 +130,7 @@ function UserComment({ comment, comments, setComments, onDelete }) {
           <UserReply
             reply={reply}
             key={reply.id}
-            onDelete={onDelete}
+            onDelete={handleDeleteReply}
           />
         ))}
       </div>
